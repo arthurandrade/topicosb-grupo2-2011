@@ -48,7 +48,7 @@ public class Classificador {
                 Object object = reader.read();
                 Map map = (Map) object;
                 corpo = map.get("corpo").toString();
-                corpo = trataTexto(corpo);
+                corpo = tratarTexto(corpo);
                 listaCorpos.add(corpo.toLowerCase());
              }
         } catch (YamlException ex) {
@@ -60,13 +60,13 @@ public class Classificador {
         }
 
         criarTokensPalavras(listaCorpos, listaPalavras);
-        listaPalavras = removePalavrasRepetidas(listaPalavras);      
+        listaPalavras = removerPalavrasRepetidas(listaPalavras);      
         criarArquivoDicionario();              
         System.out.println("\n\nExistem " + listaPalavras.size() + " palavras unicas.");
     }
     
 
-    public List<String> removePalavrasRepetidas(List<String> lista) {
+    public List<String> removerPalavrasRepetidas(List<String> lista) {
         List<String> listaAux = lista;
         HashSet hs = new HashSet();
 
@@ -77,7 +77,7 @@ public class Classificador {
         return listaAux;
     }
 
-    private String trataTexto(String corpo) {
+    private String tratarTexto(String corpo) {
         String texto;
 
         texto = corpo.replace("¾", " ")
